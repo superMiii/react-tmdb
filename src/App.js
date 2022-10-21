@@ -6,21 +6,46 @@ import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
+import { app } from "./firebase";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 function App() {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
   return (
     <div className="App">
       <Routes>
-        {isAuthenticated && (
+        {/* {isAuthenticated && (
           <>
-            <Route path="/home" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/logout" element={<LogoutButton />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/logout" element={<LogoutButton />} />
           </>
-        )}
-        <Route path="/" element={<Login />} />
+        )} */}
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/register"
+          element={
+            <Login
+              title="Sign Up"
+              getAuth={getAuth}
+              signInWithEmailAndPassword={signInWithEmailAndPassword}
+              createUserWithEmailAndPassword={createUserWithEmailAndPassword}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Login
+              title="Sign In"
+              getAuth={getAuth}
+              signInWithEmailAndPassword={signInWithEmailAndPassword}
+              createUserWithEmailAndPassword={createUserWithEmailAndPassword}
+            />
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

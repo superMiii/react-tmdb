@@ -12,6 +12,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { useEffect, useState } from "react";
 
 function App() {
   return (
@@ -23,7 +24,6 @@ function App() {
           <Route path="/logout" element={<LogoutButton />} />
           </>
         )} */}
-        <Route path="/" element={<Home />} />
         <Route
           path="/register"
           element={
@@ -46,6 +46,7 @@ function App() {
             />
           }
         />
+        <Route path="/" element={<Home />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

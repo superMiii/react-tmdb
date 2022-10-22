@@ -5,30 +5,31 @@ import requests from "../utils/requests";
 
 function Banner({ netflixOriginals }) {
   const [movie, setMovie] = useState([]);
-
   useEffect(() => {
     setMovie(
       netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
     );
   }, [netflixOriginals]);
+  console.log(movie)
+  console.log(netflixOriginals)
 
   return (
     <div className="flex flex-col space-y-2 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
-      <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
+      <div className="absolute top-0 left-0 bg-gradient-to-b to-black-500 -z-10 h-[95vh] w-screen">
         <img
-          src={`${requests.baseUrl}${
+          src={`${requests.baseUrlImage}${
             movie?.backdrop_path || movie?.poster_path
           }`}
           layout="fill"
-          objectFit="cover"
+          className="object-cover"
           alt=""
         />
       </div>
 
-      <h1 className="text-2xl font-bold md:text-4xl lg:text-7xl">
+      <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl text-white">
         {movie?.title || movie?.name || movie?.original_name}
       </h1>
-      <p className="max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
+      <p className="max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl text-white">
         {movie?.overview}
       </p>
 

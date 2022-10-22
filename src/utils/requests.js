@@ -1,4 +1,4 @@
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_KEY = "3aab0814a4334f4de590116326312172";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const requests = {
@@ -10,6 +10,7 @@ const requests = {
   fetchHorrorMovies: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=27`,
   fetchRomanceMovies: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=10749`,
   fetchDocumentaries: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=99`,
+  baseUrlImage: 'https://image.tmdb.org/t/p/original'
 };
 
 export default requests;

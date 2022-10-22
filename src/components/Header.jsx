@@ -1,7 +1,7 @@
 import { BellIcon, SearchIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 
-function Header() {
+function Header({handleLogout}) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ function Header() {
           src="https://rb.gy/g1pwyx"
           alt=""
           className="cursor-pointer rounded"
+          onClick={handleLogout}
         />
         {/* </Link> */}
       </div>

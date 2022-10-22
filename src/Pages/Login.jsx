@@ -20,10 +20,6 @@ function Login({
     if (authToken) {
       navigate("/");
     }
-
-    if (!authToken) {
-      navigate("/login");
-    }
   }, [navigate]);
   const handleAction = (e) => {
     const authentication = getAuth();

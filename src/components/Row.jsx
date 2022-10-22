@@ -2,8 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { useRef, useState } from "react";
 import Thumbnail from "./Thumbnail";
 
-function Row({ title, movies }) {
-  console.log(movies);
+function Row({ title, movies, setShowModal, setCurrentMovie }) {
   const rowRef = useRef(null);
   const [isMoved, setIsMoved] = useState(false);
 
@@ -40,7 +39,12 @@ function Row({ title, movies }) {
           className="flex scrollbar-hide items-center space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2"
         >
           {movies.map((movie) => (
-            <Thumbnail key={movie.id} movie={movie} />
+            <Thumbnail
+              key={movie.id}
+              movie={movie}
+              setCurrentMovie={setCurrentMovie}
+              setShowModal={setShowModal}
+            />
           ))}
         </div>
 

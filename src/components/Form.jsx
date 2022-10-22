@@ -11,7 +11,7 @@ export const Form = ({
   return (
     <>
       <div className="absolute mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14">
-        <h1 className="text-3xl font-semibold text-white">{title}</h1>
+        <h1 className="text-3xl font-semibold text-center">{title}</h1>
         <div className="space-y-4">
           <label htmlFor="" className="inline-block w-full">
             <input
@@ -41,22 +41,22 @@ export const Form = ({
           )}
         </div>
         <button
-          className="w-full rounded bg-[#e50914] text-white py-3 font-semibold"
+          className="w-full rounded bg-[#e50914]  py-3 font-semibold"
           onClick={handleAction}
         >
           {title}
         </button>
         {title === "Sign In" ? (
-          <div className="text-[gray]">
+          <div className="text-[gray] text-center">
             New to Netflix?{" "}
-            <Link to="/register" className="text-white hover:underline">
+            <Link to="/register" className=" hover:underline">
               Sign up now
             </Link>
           </div>
         ) : (
-          <div className="text-[gray]">
+          <div className="text-[gray] text-center">
             Already have account?{" "}
-            <Link to="/login" className="text-white hover:underline">
+            <Link to="/login" className=" hover:underline">
               Sign in now
             </Link>
           </div>

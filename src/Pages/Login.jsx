@@ -30,7 +30,6 @@ function Login({
             navigate("/login");
           })
           .catch((error) => {
-            console.log(error.code);
             if (error.code === "auth/email-already-in-use") {
               toast.error("Email Already in Use");
             }

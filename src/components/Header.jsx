@@ -1,8 +1,10 @@
 import { BellIcon, SearchIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
+import { Search } from "./Search";
 
 function Header({ handleLogout }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [seacrh, setSearch] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +23,7 @@ function Header({ handleLogout }) {
   }, []);
 
   return (
-    <header className={`${isScrolled && "bg-[#141414]"}`}>
+    <header className={`${isScrolled && "bg-[#141414]"} bg-gradient-to-t`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <img
           src="https://rb.gy/ulxxee"
@@ -41,9 +43,12 @@ function Header({ handleLogout }) {
       </div>
 
       <div className="flex items-center space-x-4 text-sm font-light">
-        <SearchIcon className="hidden h-6 w-6 sm:inline" />
-        {/* <p className="hidden lg:inline">Kids</p> */}
-        <BellIcon className="h-6 w-6" />
+        {seacrh && <Search />}
+        <SearchIcon
+          className="hidden cursor-pointer h-6 w-6 sm:inline"
+          onClick={() => setSearch(!seacrh)}
+        />
+        <BellIcon className="h-6 w-6 cursor-pointer" />
         {/* <Link href="/account"> */}
         <img
           src="https://rb.gy/g1pwyx"

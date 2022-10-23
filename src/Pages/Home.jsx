@@ -2,6 +2,7 @@ import { current } from "@reduxjs/toolkit";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
@@ -20,12 +21,17 @@ function Home() {
   const [documentaries, setDocumentaries] = useState([]);
   const [showModal, setShowModal] = useState();
   const [currentMovie, setCurrentMovie] = useState([]);
-  console.log(showModal);
-  console.log(currentMovie);
+  const [favoriteMovie, setFavoriteMovie] = useState(
+    JSON.parse(localStorage.getItem("movie"))
+  );
   let navigate = useNavigate();
   const handleLogout = () => {
-    sessionStorage.removeItem("_token");
-    navigate("/login");
+    const confirmationLogout = window.confirm("Are you sure want to logout?");
+    if (confirmationLogout) {
+      sessionStorage.removeItem("_token");
+      navigate("/login");
+    }
+    return;
   };
   useEffect(() => {
     let authToken = sessionStorage.getItem("_token");
@@ -56,6 +62,24 @@ function Home() {
     };
     getMovies();
   }, [navigate]);
+  const addFavorite = (movie) => {
+    if (favoriteMovie) {
+      localStorage.setItem("movie", JSON.stringify([...favoriteMovie, movie]));
+      setFavoriteMovie(JSON.parse(localStorage.getItem("movie")));
+    } else {
+      localStorage.setItem("movie", JSON.stringify([movie]));
+      setFavoriteMovie(JSON.parse(localStorage.getItem("movie")));
+    }
+    toast.success("Add to favorite successfully");
+  };
+  const deleteFavorite = (movieId) => {
+    if (favoriteMovie) {
+      const newMovies = favoriteMovie.filter((movie) => movie.id !== movieId);
+      setFavoriteMovie(newMovies);
+      localStorage.setItem("movie", JSON.stringify(newMovies));
+    }
+    toast.success("Delete from favorite successfully");
+  };
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
       <Header handleLogout={handleLogout} />
@@ -66,6 +90,14 @@ function Home() {
           setCurrentMovie={setCurrentMovie}
         />
         <section className="md:space-y-24">
+          {favoriteMovie.length > 0 && (
+            <Row
+              title="Favorites"
+              movies={favoriteMovie}
+              setShowModal={setShowModal}
+              setCurrentMovie={setCurrentMovie}
+            />
+          )}
           <Row
             title="Trending Now"
             movies={trendingMovies}
@@ -116,8 +148,13 @@ function Home() {
           showModal={showModal}
           setShowModal={setShowModal}
           currentMovie={currentMovie}
+          setCurrentMovie={setCurrentMovie}
+          addFavorite={addFavorite}
+          deleteFavorite={deleteFavorite}
+          favoriteMovie={favoriteMovie}
         />
       )}
+      <ToastContainer />
     </div>
   );
 }

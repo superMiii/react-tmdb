@@ -1,4 +1,5 @@
 import {
+  MinusIcon,
   PlusIcon,
   ThumbUpIcon,
   VolumeOffIcon,
@@ -9,11 +10,24 @@ import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
 import MuiModal from "@mui/material/Modal";
+import Row from "./Row";
 
-export default function Modal({ showModal, setShowModal, currentMovie }) {
+export default function Modal({
+  showModal,
+  setShowModal,
+  currentMovie,
+  addFavorite,
+  deleteFavorite,
+  favoriteMovie,
+}) {
   const [trailer, setTrailer] = useState("");
   const [genres, setGenres] = useState([]);
   const [muted, setMuted] = useState(true);
+
+  const checkFavorite = favoriteMovie?.filter(
+    (movie) => movie.id === currentMovie?.id
+  );
+  const [similarMovies, setSimilarMovies] = useState([]);
 
   useEffect(() => {
     if (!currentMovie) return;
@@ -38,7 +52,16 @@ export default function Modal({ showModal, setShowModal, currentMovie }) {
       }
     }
 
+    async function similarMovies() {
+      const req = await fetch(
+        `https://api.themoviedb.org/3/movie/${currentMovie?.id}/similar?api_key=3aab0814a4334f4de590116326312172&language=en-US&page=1`
+      );
+      const res = await req.json();
+      setSimilarMovies(res.results);
+    }
+
     fetchMovie();
+    similarMovies();
   }, [currentMovie]);
 
   const handleClose = () => {
@@ -73,9 +96,21 @@ export default function Modal({ showModal, setShowModal, currentMovie }) {
                 <FaPlay className="h-7 w-7 text-black" />
                 Play
               </button>
-              <button className="modalButton">
-                <PlusIcon className="h-7 w-7" />
-              </button>
+              {checkFavorite.length > 0 ? (
+                <button className="modalButton">
+                  <MinusIcon
+                    className="h-7 w-7"
+                    onClick={() => deleteFavorite(currentMovie?.id)}
+                  />
+                </button>
+              ) : (
+                <button className="modalButton">
+                  <PlusIcon
+                    className="h-7 w-7"
+                    onClick={() => addFavorite(currentMovie)}
+                  />
+                </button>
+              )}
               <button className="modalButton">
                 <ThumbUpIcon className="h-7 w-7" />
               </button>
@@ -120,6 +155,13 @@ export default function Modal({ showModal, setShowModal, currentMovie }) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="rounded-b-md bg-[#181818] px-10 py-8">
+          <div className="relative pb-10 lg:space-y-24">
+            <section className="md:space-y-24">
+              <Row title="Similar Movies" movies={similarMovies} />
+            </section>
           </div>
         </div>
       </>

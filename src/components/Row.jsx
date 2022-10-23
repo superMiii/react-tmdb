@@ -36,7 +36,7 @@ function Row({ title, movies, setShowModal, setCurrentMovie }) {
 
         <div
           ref={rowRef}
-          className="flex scrollbar-hide items-center space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2"
+          className="flex scrollbar-hide items-center space-x-0.5 overflow-x-scroll scroll-smooth md:space-x-2.5 md:p-2"
         >
           {movies.map((movie) => (
             <Thumbnail

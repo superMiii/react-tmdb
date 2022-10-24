@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +7,6 @@ import Header from "../components/Header";
 import Modal from "../components/Modal";
 import Row from "../components/Row";
 import { Movies } from "../services/movies";
-import requests from "../utils/requests";
 
 function Home() {
   const [trendingMovies, setTrendingMovies] = useState([]);

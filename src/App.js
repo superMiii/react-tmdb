@@ -2,7 +2,6 @@ import "./App.css";
 import Login from "./Pages/Login";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
-import { app } from "./firebase";
 import {
   getAuth,
   signInWithEmailAndPassword,

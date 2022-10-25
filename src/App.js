@@ -1,6 +1,6 @@
 import "./App.css";
 import Login from "./Pages/Login";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import { app } from "./firebase";
 import {
@@ -8,7 +8,6 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { useEffect, useState } from "react";
 
 function App() {
   return (

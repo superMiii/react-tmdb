@@ -24,10 +24,10 @@ function Banner({ netflixOriginals, setShowModal, setCurrentMovie }) {
         />
       </div>
 
-      <h1 className="font-bold my-4 md:text-2xl lg:text-6xl">
+      <h1 className="font-bold sm:h-[25vh] md:text-2xl lg:text-6xl">
         {movie?.title || movie?.name || movie?.original_name}
       </h1>
-      <p className="text-xs max-w-xs md:max-w-lg hidden md:text-sm lg:max-w-2xl lg:text-lg lg:leading-5">
+      <p className="text-xs sm:hidden max-w-xs md:max-w-lg md:text-sm lg:max-w-2xl lg:text-lg lg:leading-5">
         {movie?.overview}
       </p>
 

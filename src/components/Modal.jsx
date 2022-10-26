@@ -96,7 +96,7 @@ export default function Modal({
                 <FaPlay className="h-7 w-7 text-black" />
                 Play
               </button>
-              {checkFavorite.length > 0 ? (
+              {checkFavorite?.length > 0 ? (
                 <button className="modalButton">
                   <MinusIcon
                     className="h-7 w-7"

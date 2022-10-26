@@ -12,7 +12,7 @@ function Banner({ netflixOriginals, setShowModal, setCurrentMovie }) {
   }, [netflixOriginals]);
 
   return (
-    <div className="flex flex-col sm:space-y-4 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
+    <div className="flex flex-col space-y-2 justify-end h-[30vh] pb-12 md:h-[45vh] md:space-y-6 lg:h-[65vh] lg:justify-end lg:pb-12">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
         <img
           src={`${requests.baseUrlImage}${
@@ -24,10 +24,10 @@ function Banner({ netflixOriginals, setShowModal, setCurrentMovie }) {
         />
       </div>
 
-      <h1 className="font-bold sm:h-[25vh] md:text-2xl lg:text-6xl">
+      <h1 className="font-bold md:text-2xl lg:text-6xl">
         {movie?.title || movie?.name || movie?.original_name}
       </h1>
-      <p className="text-xs sm:hidden max-w-xs md:max-w-lg md:text-sm lg:max-w-2xl lg:text-lg lg:leading-5">
+      <p className="text-xs hidden md:block max-w-xs md:max-w-lg md:text-md lg:max-w-2xl lg:text-lg lg:leading-5">
         {movie?.overview}
       </p>
 
